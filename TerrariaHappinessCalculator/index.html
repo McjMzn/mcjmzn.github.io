@@ -114,7 +114,8 @@
                     townContent.filter(c => npc.Hated.includes(c)).forEach(c => multiplyValue(1.1));
                     
                     let mod = value % 5;
-                    value = mod == 0 ? value : value - mod + 5;
+                    let rounding = mod < 2.5 ? 0 : 5;
+                    value = value - mod + rounding;
                     value = value < 75 ? 75 : value;
                     value = value > 150 ? 150 : value; 
                     npcsHappiness[npc.Name] = value.toFixed(0);
