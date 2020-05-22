@@ -97,21 +97,20 @@
                 
                 this.npcs.forEach(npc => {
                     let value = 100.0;
-                    let multiplyValue = function(multiplier) { value = Number.parseInt(value * multiplier); }
                     
                     if (this.npcs.length > 3) {
-                        multiplyValue(Math.pow(1.04, this.npcs.length - 2));
+                        value *= Math.pow(1.04, this.npcs.length - 2);
                     }
                     
                     if (this.npcs.length <= 2) {
-                        multiplyValue(0.9);
+                        value *= 0.9;
                     }
                     
                     let townContent = this.biomes.concat(this.npcs.map(n => n.Name));
-                    townContent.filter(c => npc.Loved.includes(c)).forEach(c => multiplyValue(0.9));
-                    townContent.filter(c => npc.Liked.includes(c)).forEach(c => multiplyValue(0.95));
-                    townContent.filter(c => npc.Disliked.includes(c)).forEach(c => multiplyValue(1.05));
-                    townContent.filter(c => npc.Hated.includes(c)).forEach(c => multiplyValue(1.1));
+                    townContent.filter(c => npc.Loved.includes(c)).forEach(c => value *= 0.9);
+                    townContent.filter(c => npc.Liked.includes(c)).forEach(c => value *= 0.95);
+                    townContent.filter(c => npc.Disliked.includes(c)).forEach(c => value *= 1.05);
+                    townContent.filter(c => npc.Hated.includes(c)).forEach(c => value *= 1.1);
                     
                     let mod = value % 5;
                     let rounding = mod < 2.5 ? 0 : 5;
