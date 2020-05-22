@@ -1,0 +1,141 @@
+<!doctype HTML>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="model.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div class="header">
+        <span>Terraria NPC Happiness Calculator</span>
+        <span class="secondary">by Dodo</span>
+        <br/>
+        <span class="secondary" style="font-size: 13px;">Based on data from the <a href="https://terraria.gamepedia.com/NPCs#Happiness">gamepedia</a> accessed on 21.05.2020. Calculator assumes that towns are at least 120 tiles away from each other. Displayed percantages are shop price modifiers, so the lower, the better. Pylons are being sold at <span class="happy">85%</span> and below.</span>
+    </div>
+    <div id="app"></div>
+</body>
+<script>
+    Vue.component('town', {
+        template: `
+        <div class="ui-frame">
+            <div style='display: flex; width:550px; justify-content: space-evenly'>
+                <img width="35px" v-for='biome in availableBiomes' :src="'images/' + biome + '.png'" :title="biome" :class="{ disabled: !biomes.includes(biome) }" v-on:click="toggleBiome(biome)" style="cursor: pointer;" />
+                
+                <select name="npcs" v-model='selectedNpc' style='margin-left: 20px'>
+                    <option v-for='npc in availableNpcs' :value="npc">{{npc.Name}}</option>
+                </select>
+                <button v-on:click='addSelectedNpc()'>Add NPC</button>
+            </div>
+            
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                <div class="npc" v-for='npc in npcs'>
+                    <img :src="'images/' + npc.Name.replace(' ', '') + '.png'" />
+                    <div class="name">{{npc.Name}}</div>
+                    <div :class="{ happy: happiness[npc.Name] <= 85, sad: happiness[npc.Name] > 100 }">{{happiness[npc.Name]}}%</div>
+                    <div class="remove" v-on:click="removeNpc(npc)" title="Remove from town">X</div>
+                </div>
+            </div>
+        </div>
+        `,
+        created: function() {
+            if (this.id === 1) {
+                this.npcs.push(NpcModels.filter(npc => npc.Name === 'Guide')[0]);
+                this.settledNpcs.push(NpcModels.filter(npc => npc.Name === 'Guide')[0]);
+                this.biomes.push(Biomes.Forest);
+            }
+        },
+        data: function() {
+            return {
+                selectedNpc: '',
+                selectedBiome: '',
+                
+                npcs: [],
+                biomes: []
+            };
+        },
+        props: {
+            settledNpcs: Array,
+            id: Number
+        },
+        methods: {
+            addSelectedNpc: function() {
+                if (this.selectedNpc) {
+                    this.settledNpcs.push(this.selectedNpc)
+                    this.npcs.push(this.selectedNpc);
+                    this.selectedNpc = '';
+                }
+            },
+            removeNpc: function(npc) {
+                this.settledNpcs.splice(this.settledNpcs.indexOf(npc), 1);
+                this.npcs.splice(this.npcs.indexOf(npc), 1);
+            },
+            toggleBiome: function(biome) {
+                let index = this.biomes.indexOf(biome);
+                if (index < 0)
+                {
+                    this.biomes.push(biome);
+                } else {
+                    this.biomes.splice(index, 1);
+                }
+            },
+            imageUrl(npc) {
+                return 'images/' + npc.Name.replace(' ', '') + '.png';
+            }
+        },
+        computed: {
+            availableBiomes: function() {
+                return Object.values(Biomes);
+            },
+            availableNpcs: function() {
+                return NpcModels.filter(npc => !this.settledNpcs.includes(npc));
+            },
+            happiness: function() {
+                let npcsHappiness = {};
+                
+                this.npcs.forEach(npc => {
+                    let value = 100.0;
+                    let multiplyValue = function(multiplier) { value = Number.parseInt(value * multiplier); }
+                    
+                    if (this.npcs.length > 3) {
+                        multiplyValue(Math.pow(1.04, this.npcs.length - 2));
+                    }
+                    
+                    if (this.npcs.length <= 2) {
+                        multiplyValue(0.9);
+                    }
+                    
+                    let townContent = this.biomes.concat(this.npcs);
+                    townContent.filter(c => npc.Loved.includes(c)).forEach(c => multiplyValue(0.9));
+                    townContent.filter(c => npc.Liked.includes(c)).forEach(c => multiplyValue(0.95));
+                    townContent.filter(c => npc.Disliked.includes(c)).forEach(c => multiplyValue(1.05));
+                    townContent.filter(c => npc.Hated.includes(c)).forEach(c => multiplyValue(1.1));
+                    
+                    let mod = value % 5;
+                    value = mod == 0 ? value : value - mod + 5;
+                    value = value < 75 ? 75 : value;
+                    value = value > 150 ? 150 : value; 
+                    npcsHappiness[npc.Name] = value.toFixed(0);
+                });
+                
+                return npcsHappiness;
+            }
+        }
+    });
+    
+    let app = new Vue({
+        el: '#app',
+        template:`
+        <div>
+            <town v-for="i in towns" :settledNpcs="settledNpcs" :id="i"></town>
+            <div v-on:click="towns++" class="ui-frame transparent">
+                <div>Add next town</div>
+            </div>
+        </div>
+        `,
+        data: {
+            towns: 1,
+            settledNpcs: []                
+        }
+    });
+</script>
+</html>

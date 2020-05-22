@@ -1,0 +1,85 @@
+@font-face {font-family: "Andy"; src: url("https://db.onlinewebfonts.com/t/775c3814e9c1f228d495333e07580d59.eot"); src: url("https://db.onlinewebfonts.com/t/775c3814e9c1f228d495333e07580d59.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/775c3814e9c1f228d495333e07580d59.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/775c3814e9c1f228d495333e07580d59.woff") format("woff"), url("https://db.onlinewebfonts.com/t/775c3814e9c1f228d495333e07580d59.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/775c3814e9c1f228d495333e07580d59.svg#Andy") format("svg"); }
+
+body {
+    background-color: #293c6a;
+    font-family: 'Andy';
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 0, 0.4);
+}
+
+.ui-frame {
+    background: #3f5995;
+    border: 2px solid #4968b3;
+    border-radius: 4px;
+    min-height: 35px;
+    min-width: 600px;
+    padding: 15px;
+    font-family: 'Andy';
+    margin-top: 5px;
+}
+
+.ui-frame.transparent {
+    border-style: dashed;
+    background: rgba(63, 89, 149, 0.5);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.ui-frame button, .ui-frame select {
+    background: #3b428b;
+    border: 2px solid #1d2342;
+    border-radius: 4px;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.08);
+    font-family: 'Andy';
+    font-size: 16px;
+}
+
+.disabled {
+    filter: grayscale(100%)
+}
+
+.happy {
+    color: limegreen;
+}
+
+.sad {
+    color: red;
+}
+
+.secondary {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.npc {
+    align-items: center;
+    margin: 10px;
+    margin-bottom: -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+    .npc .remove {
+        color: red;
+        visibility: hidden;
+        cursor: pointer;
+    }
+
+    .npc:hover .remove {
+        visibility: visible;
+    }
+
+.header {
+    font-size: 18px;
+}
