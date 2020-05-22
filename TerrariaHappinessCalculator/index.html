@@ -108,7 +108,6 @@
                     }
                     
                     let townContent = this.biomes.concat(this.npcs.map(n => n.Name));
-                    this.npcs.forEach(n => townContent.push(n.Name)).biomes.concat(this.npcs);
                     townContent.filter(c => npc.Loved.includes(c)).forEach(c => multiplyValue(0.9));
                     townContent.filter(c => npc.Liked.includes(c)).forEach(c => multiplyValue(0.95));
                     townContent.filter(c => npc.Disliked.includes(c)).forEach(c => multiplyValue(1.05));
