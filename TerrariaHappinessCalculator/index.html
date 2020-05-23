@@ -36,6 +36,12 @@
                     <div class="name">{{npc.Name}}</div>
                     <div :class="{ happy: happiness[npc.Name] <= 85, sad: happiness[npc.Name] > 100 }">{{happiness[npc.Name]}}%</div>
                     <div class="remove" v-on:click="removeNpc(npc)" title="Remove from town">X</div>
+                    <div class="tooltip">
+                        <div>Loves: <img v-for="love in npc.Loved" :src="'images/emotes/'+love.replace(' ', '')+'.png'" :title="love"></div>
+                        <div>Likes: <img v-for="like in npc.Liked" :src="'images/emotes/'+like.replace(' ', '')+'.png'" :title="like"></div>
+                        <div>Dislikes: <img v-for="dislike in npc.Disliked" :src="'images/emotes/'+dislike.replace(' ', '')+'.png'" :title="dislike"></div>
+                        <div>Hates: <img v-for="hate in npc.Hated" :src="'images/emotes/'+hate.replace(' ', '')+'.png'" :title="hate"></div>
+                    </div>
                 </div>
             </div>
         </div>

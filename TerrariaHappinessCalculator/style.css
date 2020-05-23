@@ -24,7 +24,7 @@ a {
 
 .ui-frame.transparent {
     border-style: dashed;
-    background: rgba(63, 89, 149, 0.5);
+    background: rgba(63, 89, 149, 0.6);
     text-align: center;
     display: flex;
     align-items: center;
@@ -32,9 +32,9 @@ a {
     cursor: pointer;
 }
 
-.ui-frame button, .ui-frame select {
+.ui-frame button, .ui-frame select, .tooltip {
     background: #3b428b;
-    border: 2px solid #1d2342;
+    border: 2px solid #1d23428c;
     border-radius: 4px;
     color: white;
     padding: 5px 10px 5px 10px;
@@ -66,9 +66,10 @@ a {
     margin-bottom: -10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    position: relative;
+    cursor: default;
 }
-
 
     .npc .remove {
         color: red;
@@ -76,8 +77,28 @@ a {
         cursor: pointer;
     }
 
+    .npc .tooltip {
+        display: none;
+        position: absolute;
+        top: -100px;
+        left: 0;
+        z-index: 20;
+        cursor: default;
+    }
+
+        .npc .tooltip div {
+            display: flex;
+            height: 32px;
+            align-items: center;
+        }
+
     .npc:hover .remove {
         visibility: visible;
+    }
+
+
+    .npc:hover .tooltip {
+        display: block;
     }
 
 .header {
