@@ -76,7 +76,7 @@ const NpcModels = [
     new NpcBuilder(Npcs.Angler).likes(Biomes.Ocean, Npcs.Demolitionist, Npcs.PartyGirl, Npcs.TaxCollector).hates(Npcs.Tavernkeep).build(),
     new NpcBuilder(Npcs.Pirate).loves(Npcs.Angler).likes(Biomes.Ocean, Npcs.Tavernkeep).dislikes(Biomes.Underground, Npcs.Stylist).hates(Npcs.Guide).build(),
     new NpcBuilder(Npcs.Mechanic).loves(Npcs.GoblinTinkerer).likes(Biomes.Snow, Npcs.Cyborg).dislikes(Biomes.Underground, Npcs.ArmsDealer).hates(Npcs.Clothier).build(),
-    new NpcBuilder(Npcs.TaxCollector).loves(Npcs.Merchant).likes(Biomes.Snow, Npcs.PartyGirl).dislikes(Biomes.Hallow, Npcs.Demolitionist, Npcs.Merchant).hates(Npcs.SantaClaus).build(),
+    new NpcBuilder(Npcs.TaxCollector).loves(Npcs.Merchant).likes(Biomes.Snow, Npcs.PartyGirl).dislikes(Biomes.Hallow, Npcs.Demolitionist, Npcs.Mechanic).hates(Npcs.SantaClaus).build(),
     new NpcBuilder(Npcs.Cyborg).likes(Biomes.Snow, Npcs.Steampunker, Npcs.Pirate, Npcs.Stylist).dislikes(Biomes.Jungle, Npcs.Zoologist).hates(Npcs.Wizard).build(),
     new NpcBuilder(Npcs.SantaClaus).loves(Biomes.Snow).hates(Biomes.Desert, Npcs.TaxCollector).build(),
     new NpcBuilder(Npcs.Truffle).loves(Npcs.Guide).likes(Npcs.Dryad).dislikes(Npcs.Clothier).hates(Npcs.WitchDoctor).build(),
