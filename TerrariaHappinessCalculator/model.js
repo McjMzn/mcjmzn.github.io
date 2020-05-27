@@ -58,7 +58,7 @@ const NpcModels = [
     new NpcBuilder(Npcs.Guide).likes(Biomes.Forest, Npcs.Clothier, Npcs.Zoologist).dislikes(Biomes.Ocean, Npcs.Steampunker).hates(Npcs.Painter).build(),
     new NpcBuilder(Npcs.Merchant).likes(Biomes.Forest, Npcs.Golfer, Npcs.Nurse).dislikes(Biomes.Desert, Npcs.TaxCollector).hates(Npcs.Angler).build(),
     new NpcBuilder(Npcs.Zoologist).loves(Npcs.WitchDoctor).likes(Biomes.Forest, Npcs.Golfer).dislikes(Npcs.Angler).hates(Npcs.ArmsDealer).build(),
-    new NpcBuilder(Npcs.Golfer).loves(Npcs.ArmsDealer).likes(Biomes.Forest, Npcs.Painter, Npcs.Zoologist).dislikes(Npcs.Pirate).hates(Npcs.Merchant).build(),
+    new NpcBuilder(Npcs.Golfer).loves(Npcs.Angler).likes(Biomes.Forest, Npcs.Painter, Npcs.Zoologist).dislikes(Npcs.Pirate).hates(Npcs.Merchant).build(),
     new NpcBuilder(Npcs.Nurse).loves(Npcs.ArmsDealer).likes(Biomes.Hallow, Npcs.Wizard).dislikes(Biomes.Snow, Npcs.Dryad, Npcs.PartyGirl).hates(Npcs.Zoologist).build(),
     new NpcBuilder(Npcs.Tavernkeep).loves(Npcs.Demolitionist).likes(Biomes.Hallow, Npcs.GoblinTinkerer).dislikes(Biomes.Snow, Npcs.Guide).hates(Npcs.DyeTrader).build(),
     new NpcBuilder(Npcs.PartyGirl).loves(Npcs.Wizard).likes(Biomes.Hallow, Npcs.Stylist).dislikes(Biomes.Underground, Npcs.Merchant).hates(Npcs.TaxCollector).build(),
