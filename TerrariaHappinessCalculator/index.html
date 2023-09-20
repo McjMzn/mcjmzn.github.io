@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/Favicon.ico">
     <title>Terraria NPC Happiness Calculator by Dodo</title>
-    <meta name="Keywords" content="Terraria,NPC,Happiness,Dodo,McjMzn,Journey's End, 1.4.1, Calculator">
+    <meta name="Keywords" content="Terraria,NPC,Happiness,Dodo,McjMzn,Journey's End, 1.4.4.9, Labor of Love, Calculator">
 </head>
 <body>
     <div class="header">
         <span>Terraria NPC Happiness Calculator</span>
         <span class="secondary">by Dodo</span>
         <br/>
-        <span class="secondary" style="font-size: 13px;">Based on data from the <a href="https://terraria.gamepedia.com/NPCs#Happiness">gamepedia</a> accessed on 26.10.2020. Calculator assumes that towns are at least 240 tiles away from each other. Displayed percantages are shop price modifiers, so the lower, the better. Pylons are sold at <span class="happy">85%</span> and below.</span>
+        <span class="secondary" style="font-size: 13px;">Based on data from the <a href="https://terraria.wiki.gg/wiki/NPCs#Happiness">wiki.gg</a> accessed on 19.09.2023. Calculator assumes that towns are at least 240 tiles away from each other. Displayed percantages are shop price modifiers, so the lower, the better. Pylons are sold at <span class="happy">90%</span> and below.</span>
     </div>
     <div id="app"></div>
 </body>
@@ -104,22 +104,22 @@
                 this.npcs.forEach(npc => {
                     let value = 100.0;
                     
-                    if (this.npcs.length > 3) {
-                        value *= Math.pow(1.04, this.npcs.length - 2);
+                    if (this.npcs.length > 4) {
+                        value *= Math.pow(1.05, this.npcs.length - 3);
                     }
                     
-                    if (this.npcs.length <= 2) {
-                        value *= 0.9;
+                    if (this.npcs.length <= 3) {
+                        value *= 0.95;
                     }
                     
                     let townContent = this.biomes.concat(this.npcs.map(n => n.Name));
-                    townContent.filter(c => npc.Loved.includes(c)).forEach(c => value *= 0.9);
-                    townContent.filter(c => npc.Liked.includes(c)).forEach(c => value *= 0.95);
-                    townContent.filter(c => npc.Disliked.includes(c)).forEach(c => value *= 1.05);
-                    townContent.filter(c => npc.Hated.includes(c)).forEach(c => value *= 1.1);
+                    townContent.filter(c => npc.Loved.includes(c)).forEach(c => value *= 0.88);
+                    townContent.filter(c => npc.Liked.includes(c)).forEach(c => value *= 0.94);
+                    townContent.filter(c => npc.Disliked.includes(c)).forEach(c => value *= 1.06);
+                    townContent.filter(c => npc.Hated.includes(c)).forEach(c => value *= 1.2);
                     
-                    let mod = value % 5;
-                    let rounding = mod < 2.5 ? 0 : 5;
+                    let mod = value % 1;
+                    let rounding = mod < 0.5 ? 0 : 1;
                     value = value - mod + rounding;
                     value = value < 75 ? 75 : value;
                     value = value > 150 ? 150 : value; 
