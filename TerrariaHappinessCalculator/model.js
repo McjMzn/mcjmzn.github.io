@@ -6,7 +6,12 @@ const Biomes = {
     Snow: 'Snow',
     Ocean: 'Ocean',
     Mushroom: 'Mushroom',
-    Hallow: 'Hallow'
+    Hallow: 'Hallow',
+    Space: 'Space',
+    Dungeon: 'Dungeon',
+    Caverns: 'Caverns',
+    Underworld: 'Underworld',
+    BrimstoneCrag: 'Brimstone Crag'
 };
 
 const Npcs = {
@@ -35,7 +40,32 @@ const Npcs = {
     WitchDoctor: 'Witch Doctor',
     Wizard: 'Wizard',
     Zoologist: 'Zoologist',
-    Princess: 'Princess'
+    Princess: 'Princess',
+
+    ThoriumCobbler: 'Cobbler (Thorium)',
+    ThoriumDesertAcolyte: 'Desert Acolyte (Thorium)',
+    ThroiumCook: 'Cook (Thorium)',
+    ThoriumConfusedZombie: 'Confused Zombie (Thorium)',
+    ThoriumBlacksmith: 'Blacksmith (Thorium)',
+    ThoriumTracker: 'Tracker (Thorium)',
+    ThoriumDiverman: 'Diverman (Thorium)',
+    ThoriumDruid: 'Druid (Thorium)',
+    ThoriumSpiritualist: 'Spiritualist (Thorium)',
+    ThoriumWeaponMaster: 'Weapon Master (Thorium)',
+
+    CalamitySeaKing: 'Sea King (Calamity)',
+    CalamityBandit: 'Bandit (Calamity)',
+    CalamityDrunkPrincess: 'Drunk Princess (Calamity)',
+    CalamityArchmage: 'Archmage (Calamity)',
+    CalamityBrimstoneWitch: 'Brimstone Witch (Calamity)',
+
+    FargosLumberJack: "LumberJack (Fargo's)",
+    FargosDeviantt: "Deviantt (Fargo's)",
+    FargosAbominationn: "Abominationn (Fargo's)",
+    FargosMutant: "Mutant (Fargo's)",
+    FargosSquirrel: "Squirrel (Fargo's)",
+
+    MagicStorageGolem: 'Golem (Magic Storage)'
 };
 
 const NpcBuilder = function(npcName) {
@@ -80,6 +110,31 @@ const NpcModels = [
     new NpcBuilder(Npcs.TaxCollector).loves(Npcs.Merchant).likes(Biomes.Snow, Npcs.PartyGirl, Npcs.Princess).dislikes(Biomes.Hallow, Npcs.Demolitionist, Npcs.Mechanic).hates(Npcs.SantaClaus).build(),
     new NpcBuilder(Npcs.Cyborg).likes(Biomes.Snow, Npcs.Steampunker, Npcs.Pirate, Npcs.Stylist, Npcs.Princess).dislikes(Biomes.Jungle, Npcs.Zoologist).hates(Npcs.Wizard).build(),
     new NpcBuilder(Npcs.SantaClaus).likes(Npcs.Princess).loves(Biomes.Snow).hates(Biomes.Desert, Npcs.TaxCollector).build(),
-    new NpcBuilder(Npcs.Truffle).loves(Npcs.Guide).likes(Npcs.Dryad, Npcs.Princess).dislikes(Npcs.Clothier).hates(Npcs.WitchDoctor).build(),
+    new NpcBuilder(Npcs.Truffle).loves(Npcs.Guide).likes(Biomes.Mushroom, Npcs.Dryad, Npcs.Princess).dislikes(Npcs.Clothier).hates(Npcs.WitchDoctor).build(),
     new NpcBuilder(Npcs.Princess).loves(...Object.values(Npcs).filter(npc => npc !== "Princess")).build()
+    
+    new NpcBuilder(Npcs.ThoriumCobbler).loves(Npcs.Zoologist, Npcs.Golfer).likes(Biomes.Forest, Npcs.ThoriumSpiritualist).dislikes(Biomes.Ocean, Npcs.ThoriumDruid, Npcs.Dryad, Npcs.Angler).hates(Npcs.Nurse).build(),
+    new NpcBuilder(Npcs.ThoriumDesertAcolyte).likes(Biomes.Desert, Npcs.Nurse, Npcs.ThoriumSpiritualist).dislikes(Biomes.Jungle, Npcs.Pirate).hates(Npcs.ThoriumWeaponMaster, Npcs.WitchDoctor, Npcs.GoblinTinkerer).build(),
+    new NpcBuilder(Npcs.ThroiumCook).loves(Npcs.SantaClaus).likes(Biomes.Mushrom, Npcs.Truffle).dislikes(Biomes.Underground, Npcs.Angler).hates(Npcs.Cyborg).build(),
+    new NpcBuilder(Npcs.ThoriumConfusedZombie).loves(Npcs.Guide).likes(Biomes.Forest, Npcs.Clothier).dislikes(Npcs.ThoriumSpiritualist).build(),
+    new NpcBuilder(Npcs.ThoriumBlacksmith).loves(Npcs.Demolitionist).likes(Biomes.Underground, Npcs.ThoriumWeaponMaster).dislikes(Npcs.ThoriumTracker).build(),
+    new NpcBuilder(Npcs.ThoriumTracker).loves(Npcs.Tavernkeep).likes(Biomes.Snow, Npcs.Guide, Npcs.Stylist).dislikes(Biomes.Forest, Npcs.DyeTrader).hates(Npcs.ThoriumDesertAcolyte).build(),
+    new NpcBuilder(Npcs.ThoriumDiverman).loves(Npcs.PartyGirl).likes(Biomes.Ocean, Npcs.Pirate).dislikes(Biomes.Desert, Npcs.Angler).build(),
+    new NpcBuilder(Npcs.ThoriumDruid).likes(Biomes.Jungle, Npcs.Dryad).dislikes(Biomes.Snow, Npcs.Demolitionist).hates(Npcs.Steampunker).build(),
+    new NpcBuilder(Npcs.ThoriumSpiritualist).loves(Npcs.Stylist).likes(Biomes.Hallow, Npcs.WitchDoctor).dislikes(Biomes.Underground, Npcs.ThoriumWeaponMaster).hates(Npcs.TaxCollector).build(),
+    new NpcBuilder(Npcs.ThoriumWeaponMaster).loves(Npcs.TaxCollector).likes(Biomes.Underground, Npcs.GoblinTinkerer, Npcs.WitchDoctor).dislikes(Biomes.Hallow, Npcs.Guide, Npcs.ThoriumConfusedZombie).hates(Npcs.ThoriumSpiritualist).build(),
+
+    new NpcBuilder(Npcs.CalamitySeaKing).likes(Biomes.Ocean, Npcs.Pirate).dislikes(Biomes.Desert, Npcs.Demolitionist).hates(Npcs.Angler).build(),
+    new NpcBuilder(Npcs.CalamityBandit).likes(Biomes.Desert, Npcs.GoblinTinkerer).dislikes(Biomes.Jungle, Npcs.Dryad).build(),
+    new NpcBuilder(Npcs.CalamityDrunkPrincess).loves(Biomes.Hallow, Npcs.Stylist, Npcs.Zoologist).likes(Biomes.Ocean, Npcs.PartyGirl, Npcs.Truffle).dislikes(Biomes.Desert, Npcs.TaxCollector, Npcs.Tavernkeep).hates(Biomes.Underground, Npcs.Angler, Npcs.GoblinTinkerer).build(),
+    new NpcBuilder(Npcs.CalamityArchmage).likes(Biomes.Snow, Npcs.Wizard).dislikes(Biomes.Desert, Npcs.Cyborg).build(),
+    new NpcBuilder(Npcs.CalamityBrimstoneWitch).likes(Biomes.Forest, Npcs.Clothier).dislikes(Biomes.Jungle, Npcs.PartyGirl).build(),
+
+    new NpcBuilder(Npcs.FargosLumberJack).loves(Biomes.Forest).likes(Npcs.FargosSquirrel).dislikes(Npcs.Dryad).hates(Npcs.Demolitionist).build(),
+    new NpcBuilder(Npcs.FargosDeviantt).loves(Biomes.Space, Npcs.FargosMutant).likes(Biomes.Jungle, Npcs.FargosAbomination).dislikes(Biomes.Snow, Npcs.Zoologist).hates(Biomes.Desert, Npcs.Angler).build(),
+    new NpcBuilder(Npcs.FargosAbominationn).loves(Biomes.Space, Npcs.FargosMutant).likes(Biomes.Ocean, Npcs.FargosDeviantt).dislikes(Biomes.Dungeon).hates(Npcs.Nurse).build(),
+    new NpcBuilder(Npcs.FargosMutant).loves(Biomes.Space, Npcs.FargosAbominationn).likes(Biomes.Forest, Npcs.FargosDeviantt).dislikes(Biomes.Hallow, Npcs.FargosLumberJack).build(),
+    new NpcBuilder(Npcs.FargosSquirrel).loves(Biomes.Forest).likes(Npcs.FargosLumberJack).hates(Biomes.Caverns, Biomes.Underground, Biomes.Underworld).build(),
+
+    new NpcBuilder(Npcs.MagicStorageGolem).loves(Biomes.Snow, Npcs.Mechanic).likes(Biomes.Forest, Npcs.WitchDoctor).dislikes(Biomes.Desert, Npcs.Wizard).hates(Biomes.Hallow, Npcs.TaxCollector).build()
 ].sort((a, b) => a.Name.localeCompare(b.Name));
